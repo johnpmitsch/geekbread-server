@@ -1,4 +1,4 @@
-class RecipesController < ApplicationController
+class V1::RecipesController < V1::ApiController
   before_action :set_recipe, only: [:show, :update, :destroy]
 
   # GET /v1/recipes
