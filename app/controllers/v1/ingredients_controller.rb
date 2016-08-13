@@ -1,9 +1,10 @@
-class IngredientsController < ApplicationController
+class V1::IngredientsController < V1::ApiController
   before_action :set_ingredient, only: [:show, :update, :destroy]
 
   # GET /v1/ingredients
   def index
     @ingredients = Ingredient.all
+    @ingredients = @ingredients.where(recipe_id: params[:recipe_id]) if params[:recipe_id]
 
     render json: @ingredients
   end
@@ -46,6 +47,6 @@ class IngredientsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :amount, :recipe_id)
+      params.require(:ingredient).permit(:name, :percentage, :recipe_id)
     end
 end
