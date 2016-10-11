@@ -18,7 +18,7 @@ class V1::RecipesController < V1::ApiController
     @recipe = Recipe.new(recipe_params)
 
     if @recipe.save
-      render json: @recipe, status: :created, location: @recipe
+      render json: @recipe, status: :created 
     else
       render json: @recipe.errors, status: :unprocessable_entity
     end
@@ -35,7 +35,11 @@ class V1::RecipesController < V1::ApiController
 
   # DELETE /v1/recipes/1
   def destroy
-    @recipe.destroy
+    if @recipe.destroy
+      render json: @recipe, :status => :ok
+    else
+      render :json => @recipe.errors, :status => :unprocessable_entity
+    end
   end
 
   private
