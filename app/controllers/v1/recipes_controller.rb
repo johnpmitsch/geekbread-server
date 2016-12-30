@@ -1,9 +1,11 @@
 class V1::RecipesController < V1::ApiController
   before_action :set_recipe, only: [:show, :update, :destroy]
+  before_action :get_user
 
   # GET /v1/recipes
   def index
     @recipes = Recipe.all
+    @recipes = @recipes.where(:user_id => @user) if @user
 
     render json: @recipes
   end
@@ -51,5 +53,9 @@ class V1::RecipesController < V1::ApiController
     # Only allow a trusted parameter "white list" through.
     def recipe_params
       params.require(:recipe).permit(:name)
+    end
+
+    def get_user
+      @user = User.find(params[:user_id]) if params[:user_id]
     end
 end
