@@ -16,7 +16,8 @@ recipes = [sourdough, challah, wheat]
 
 def basic_ingredients(recipe_id)
   Ingredient.find_or_create_by({ name: 'water', percentage: 100, recipe_id: recipe_id });
-  Ingredient.find_or_create_by({ name: 'flour', percentage: 70, recipe_id: recipe_id });
+  Ingredient.find_or_create_by({ name: 'AP flour', percentage: 30, recipe_id: recipe_id, type: "Flour" });
+  Ingredient.find_or_create_by({ name: 'bread flour', percentage: 70, recipe_id: recipe_id, type: "Flour" });
   Ingredient.find_or_create_by({ name: 'salt', percentage: 2, recipe_id: recipe_id });
   Ingredient.find_or_create_by({ name: 'yeast', percentage: 5, recipe_id: recipe_id });
 end

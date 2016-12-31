@@ -1,3 +1,3 @@
 class IngredientSerializer < ActiveModel::Serializer
-  attributes :id, :name, :percentage, :recipe_id
+  attributes :id, :name, :percentage, :recipe_id, :type
 end
