@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 #
-user = User.create! :name => 'John Doe', :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret'
+user = User.find_or_create_by(:name => 'John Doe', :email => 'john@gmail.com', :password => 'topsecret', :password_confirmation => 'topsecret')
 
 sourdough = Recipe.find_or_create_by({ name: 'Basic Sourdough', user: user});
 challah = Recipe.find_or_create_by({ name: 'Challah', user: user});

@@ -1,11 +1,15 @@
 class V1::RecipesController < V1::ApiController
   before_action :set_recipe, only: [:show, :update, :destroy]
-  before_action :get_user
+  before_action :authorize_recipe, except: [:index, :create]
+  before_action :authenticate_user!
 
   # GET /v1/recipes
   def index
-    @recipes = Recipe.all
-    @recipes = @recipes.where(:user_id => @user) if @user
+    if current_user
+      @recipes = Recipe.where(:user_id => current_user.id)
+    else
+      return head :unauthorized
+    end
 
     render json: @recipes
   end
@@ -18,6 +22,11 @@ class V1::RecipesController < V1::ApiController
   # POST /v1/recipes
   def create
     @recipe = Recipe.new(recipe_params)
+    if current_user
+      @recipe.user_id = current_user.id
+    else
+      head :unauthorized
+    end
 
     if @recipe.save
       render json: @recipe, status: :created 
@@ -50,12 +59,14 @@ class V1::RecipesController < V1::ApiController
       @recipe = Recipe.find(params[:id])
     end
 
+    def authorize_recipe
+      unless current_user && @recipe && @recipe.user_id == current_user.id
+        head :unauthorized
+      end
+    end
+
     # Only allow a trusted parameter "white list" through.
     def recipe_params
       params.require(:recipe).permit(:name)
-    end
-
-    def get_user
-      @user = User.find(params[:user_id]) if params[:user_id]
     end
 end
