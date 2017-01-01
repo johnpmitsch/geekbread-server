@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
-gem 'devise'
-gem 'devise_token_auth' # Token based authentication for Rails JSON APIs
+gem 'devise_token_auth', '~> 0.1.37'
+gem 'devise', '~> 4.0.0'
 gem 'omniauth' # required for devise_token_auth
 gem 'rake', '< 11'
 #gem 'omniauth-facebook'
@@ -12,7 +12,7 @@ gem 'rails', '>= 5.0.0', '< 5.1'
 gem 'sqlite3'
 # Use Puma as the app server
 gem 'puma'
-gem 'active_model_serializers'
+gem 'active_model_serializers', '~> 0.10.0.rc4'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 # gem 'jbuilder', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
@@ -26,6 +26,8 @@ gem 'active_model_serializers'
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'rack-attack'
+
+gem 'pg'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

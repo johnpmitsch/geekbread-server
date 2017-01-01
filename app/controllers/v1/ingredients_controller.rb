@@ -1,10 +1,10 @@
 class V1::IngredientsController < V1::ApiController
   before_action :set_ingredient, only: [:show, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /v1/ingredients
   def index
-    @ingredients = Ingredient.all
-    @ingredients = @ingredients.where(recipe_id: params[:recipe_id]) if params[:recipe_id]
+    @ingredients = Ingredient.where(recipe_id: params[:recipe_id]) if params[:recipe_id]
     @ingredients = @ingredients.where(type: params[:ingredient_type]) if params[:ingredient_type]
 
     render json: @ingredients
