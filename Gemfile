@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'devise_token_auth', '~> 0.1.37'
 gem 'devise', '~> 4.0.0'
-gem 'omniauth' '~> 1.3.0'# required for devise_token_auth
+gem 'omniauth', '~> 1.3.0'# required for devise_token_auth
 gem 'rake', '< 11'
 
 gem 'rails', '>= 5.0.0', '< 5.1'
