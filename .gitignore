@@ -20,5 +20,8 @@
 # Ignore Byebug command history file.
 .byebug_history
 
+# Ignore Google Cloud Engine config
+app.yaml
+
 *.swp
 *.swo
