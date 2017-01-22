@@ -4,4 +4,8 @@ class PingController < ApplicationController
   def health_check
     render json: {"status": "WORKING!!"}
   end
+
+  def root
+    render json: {"HELLO": "WELCOME TO GEEKBREAD"}
+  end
 end
