@@ -13,6 +13,7 @@ default: &default
 development:
   <<: *default
   database: geekbread_development
+  host: localhost
   username: postgres
   password:
 
