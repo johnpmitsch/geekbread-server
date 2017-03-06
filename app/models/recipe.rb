@@ -3,6 +3,6 @@ class Recipe < ApplicationRecord
   belongs_to :user
 
   def levain_exists?
-    self.ingredients.where(:type => "Levain").present?
+    self.ingredients.where(levain: true).present?
   end
 end
