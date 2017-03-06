@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170205134425) do
+ActiveRecord::Schema.define(version: 20170305155618) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 20170205134425) do
     t.string   "name"
     t.decimal  "percentage"
     t.integer  "recipe_id"
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "type",       default: "Other"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.boolean  "preferment", default: false
+    t.boolean  "levain",     default: false
+    t.boolean  "flour",      default: false
     t.index ["recipe_id"], name: "index_ingredients_on_recipe_id", using: :btree
   end
 

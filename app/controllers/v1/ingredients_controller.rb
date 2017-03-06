@@ -6,8 +6,8 @@ class V1::IngredientsController < V1::ApiController
   # GET /v1/ingredients
   def index
     @ingredients = Ingredient.where(recipe_id: params[:recipe_id]) if params[:recipe_id]
-    @ingredients = @ingredients.where(type: params[:ingredient_type]) if params[:ingredient_type]
-    @ingredients = @ingredients.sort_by &:type
+    @ingredients = @ingredients.where(preferment: params[:preferment]) if params[:preferment]
+    @ingredients = @ingredients.sort_by { |ingredient| ingredient.flour ? 0 : 1 }
 
     render json: @ingredients
   end
@@ -54,17 +54,17 @@ class V1::IngredientsController < V1::ApiController
 
     # Only allow a trusted parameter "white list" through.
     def ingredient_params
-      params.require(:ingredient).permit(:name, :percentage, :recipe_id, :type, :preferment)
+      params.require(:ingredient).permit(:name, :percentage, :recipe_id, :preferment, :flour, :levain)
     end
 
     def create_levain
       if @ingredient.preferment?
         unless @ingredient.recipe.levain_exists?
           # add the percentage of the recipe that is the preferment
-          levain = Ingredient.new({"name"=>"preferment", 
-                                   "percentage"=>"20", 
-                                   "recipe_id"=>@ingredient.recipe.id, 
-                                   "type"=>"Levain"})
+          levain = Ingredient.new({name: "preferment",
+                                   percentage: "20",
+                                   recipe_id: @ingredient.recipe.id,
+                                   levain: true})
           levain.save
         end
       end
