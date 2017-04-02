@@ -1,0 +1,2 @@
+class BetaKey < ApplicationRecord
+end
