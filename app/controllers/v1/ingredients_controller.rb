@@ -7,7 +7,7 @@ class V1::IngredientsController < V1::ApiController
   def index
     @ingredients = Ingredient.where(recipe_id: params[:recipe_id]) if params[:recipe_id]
     @ingredients = @ingredients.where(preferment: params[:preferment]) if params[:preferment]
-    @ingredients = @ingredients.sort_by { |ingredient| ingredient.flour ? 0 : 1 }
+    @ingredients = @ingredients.order(flour: :desc, percentage: :desc)
 
     render json: @ingredients
   end

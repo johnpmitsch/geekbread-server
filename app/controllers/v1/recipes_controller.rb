@@ -10,6 +10,7 @@ class V1::RecipesController < V1::ApiController
     else
       return head :unauthorized
     end
+    @recipes = @recipes.order(:created_at).reverse
 
     render json: @recipes
   end
