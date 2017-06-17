@@ -12,6 +12,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'rack-cors'
 gem 'rack-attack'
 gem 'pg', '~> 0.19.0'
+gem 'figaro'
 
 group :development, :test do
   gem 'byebug'
