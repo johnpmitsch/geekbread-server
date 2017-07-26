@@ -30,6 +30,5 @@ production:
   <<: *default
   database: geekbread_production
   username: postgres
-  password: geekbread1990
-  host: 130.211.134.176
-  #host: <%= ENV["PRODUCTION_DB_IP"] => 
+  password: <%= ENV["PRODUCTION_DB_PASSWORD"] =>
+  host: <%= ENV["PRODUCTION_DB_IP"] => 
