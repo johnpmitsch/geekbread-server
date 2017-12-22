@@ -8,7 +8,6 @@ let server = require("../app");
 let should = chai.should();
 
 chai.use(chaiHttp);
-//Our parent block
 describe("Recipes", () => {
   beforeEach(done => {
     //empty the db
@@ -21,9 +20,10 @@ describe("Recipes", () => {
       .request(server)
       .get("/recipes")
       .end((err, res) => {
+				const recipes = res.body.recipes;
         res.should.have.status(200);
 				res.body.should.have.property("recipes");
-				res.body.recipes.should.be.a("array");
+				res.body.recipes.should.be.a("array").with.lengthOf(3);
         done();
       });
   });
