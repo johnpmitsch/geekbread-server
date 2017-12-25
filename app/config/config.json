@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "geekbread",
+    "password": "geekbread",
+    "database": "geekbread_development",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "geekbread",
+    "password": "geekbread",
+    "database": "geekbread_test",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "geekbread",
+    "password": "geekbread",
+    "database": "geekbread_production",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
