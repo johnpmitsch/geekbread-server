@@ -3,13 +3,14 @@ const bodyParser = require("body-parser");
 const app = express();
 const db = require("./models");
 
-require("./routes")(app, db);
+app.use(bodyParser.json({ type: "application/*+json" }));
+//app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(bodyParser.json());
+require("./routes")(app, db);
 
 const PORT = process.env.PORT || 3001;
 
-db.sequelize.sync().then(function() {
+db.sequelize.sync().then(() => {
   app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
   });

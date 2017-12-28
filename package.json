@@ -17,7 +17,8 @@
     "prettier": "^1.9.2"
   },
   "scripts": {
-    "test": "mocha --exit",
+    "migrateAll": "NODE_ENV=test sequelize db:migrate; sequelize db:migrate",
+    "test": " mocha --exit",
     "format": "find -name '*.js' -not -path './node_modules/*' | xargs prettier --write",
     "start": "nodemon app/index.js",
     "fullStart": "npm test; npm start"
